@@ -1,15 +1,7 @@
 module.exports = function(app) {
   // Models
   var Admin = require('../db/admin.js');
-
-  // Params
-  // -------------------------
-  // app.param('email', function(req, res, next, email) {
-  //   Admin.find({ email: email }, function(err, docs) {
-  //     req.email = docs[0];
-  //     next()
-  //   })
-  // });
+  var User = require('../db/user.js');
 
   // server routes
   // -------------------------
