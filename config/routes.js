@@ -3,7 +3,33 @@ module.exports = function(app) {
   var Admin = require('../db/admin.js');
   var User = require('../db/user.js');
 
-  // server routes
+  // User routes
+  // -------------------------
+  app.get('/users', function(req, res) {
+    User.find(function(err, users) {
+      if(!err) {
+        res.json(users);
+      }
+      else {
+        res.send(err);
+      }
+    });
+  });
+
+  app.post('/users', function(req, res) {
+    var user = new User(req.body);
+
+    user.save(function(err) {
+      if(!err) {
+        return true;
+      } else {
+        return err;
+      }
+    });
+  });
+
+
+  // Admin routes
   // -------------------------
   app.get('/admins', function(req, res) {
     Admin.find(function(err, adm) {

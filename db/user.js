@@ -7,9 +7,12 @@ var userSchema = new Schema({
   email: String,
   register_date: { type: Date, default: Date.now },
   membership: {
-    month: String,
     year: Number,
-    status: String
+    status: {
+      month: String,
+      terms: Number,
+      full_month: Boolean
+    }
   }
 });
 
