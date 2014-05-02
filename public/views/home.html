@@ -1,0 +1,46 @@
+<section ng-controller="MainCtrl" ng-init="init()" ng-cloak>
+  <form ng-show="showAdminCreateForm">
+    <h4 style="margin: 0 0 15px;">Only being shown on first start</h4>
+    <div class="form-group">
+      <label for="email_address">Email address</label>
+      <input type="email" class="form-control" id="email_address"
+        placeholder="Enter email" ng-model="newAdmin.email" required>
+    </div>
+    <div class="form-group">
+      <label for="admin_name">Admin name</label>
+      <input type="text" class="form-control" id="admin_name"
+        placeholder="Enter name" ng-model="newAdmin.name" required>
+    </div>
+    <div class="form-group">
+      <label for="admin_password">Password</label>
+      <input type="password" class="form-control" id="admin_password"
+          placeholder="Password" ng-model="newAdmin.password" required ng-minlength="6">
+    </div>
+
+    <button type="submit" class="btn btn-primary"
+      ng-click="createNewAdmin()">
+      Register
+    </button>
+  </form>
+
+  <form ng-show="showLoginForm" name="adminLoginForm" ng-submit="loginAdmin()" novalidate>
+    <div class="form-group">
+      <label for="email_address">Email address</label>
+      <input type="email" class="form-control" name="email"
+        placeholder="Enter email" ng-model="adminLogin.email" required>
+      <p ng-show="adminLoginForm.email.$invalid && !adminLoginForm.email.$pristine" class="help-block">Enter a valid email.</p>
+    </div>
+    <div class="form-group">
+      <label for="admin_password">Password</label>
+      <input type="password" class="form-control" name="password"
+          placeholder="Password" ng-model="adminLogin.password" required ng-minlength="6">
+      <p ng-show="adminLoginForm.password.$error.minlength" class="help-block">Password is too short.</p>
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-disabled="adminLoginForm.$invalid">
+      Login
+    </button>
+  </form>
+
+  Show the rest of the page
+</section>
