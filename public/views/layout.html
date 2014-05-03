@@ -12,6 +12,8 @@
   <!-- JS -->
   <script src="vendors/angular/angular.min.js"></script>
   <script src="vendors/angular-route/angular-route.min.js"></script>
+  <script src="vendors/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="vendors/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
   <!-- ANGULAR CUSTOM -->
   <script src="js/app.js"></script>
@@ -46,11 +48,8 @@
 
   <!-- ANGULAR DYNAMIC CONTENT -->
   <div id="content">
-    <div class="container" ng-repeat="alert in alerts">
-      <div class="alert" ng-class="alert.type">
-        <button type="button" class="close" ng-click="close()">×</button>
-        {{ alert.msg }}
-      </div>
+    <div class="container">
+      <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">{{ alert.msg }}</alert>
     </div>
 
     <div ng-view class="container"></div>

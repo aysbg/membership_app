@@ -53,7 +53,7 @@
                 $location.path('/admin');
               }
               else {
-                AlertService.show('alert-danger', 'Email or password are not correct!');
+                AlertService.show('danger', 'Email or password are not correct!');
               }
             }).error(function(data, status) {
               console.log('there is an error');

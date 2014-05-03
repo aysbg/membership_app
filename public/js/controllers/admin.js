@@ -1,8 +1,8 @@
 (function(angular) {
   "use strict";
 
-  var AdminCtrl = ["$window", "$rootScope", "$scope", "$http", "AdminService", "UserService",
-    function($window, $rootScope, $scope, $http, AdminService, UserService) {
+  var AdminCtrl = ["$window", "$rootScope", "$scope", "$http", "AdminService", "UserService", "AlertService",
+    function($window, $rootScope, $scope, $http, AdminService, UserService, AlertService) {
       $scope.newMember = {};
       $scope.users = {};
 
@@ -43,8 +43,9 @@
 
         UserService.create(user)
           .success(function(data, status) {
+            $scope.newMember = {};
             $scope.getUsers();
-            AlertService.show('alert-success', 'New member has been created!');
+            AlertService.show('success', 'New member has been created!');
           })
           .error(function(data, status) {
             console.log(data);
@@ -55,6 +56,7 @@
         UserService.delete(member.unique_id)
           .success(function(data, status) {
             $scope.getUsers();
+            AlertService.show('info', 'Member has been deleted!');
           })
           .error(function(data, status) {
             console.log('something is seriously messed up');

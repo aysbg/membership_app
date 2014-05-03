@@ -3,11 +3,12 @@
     <div class="col-md-7">
       <legend>New member</legend>
       <form name="newMemberForm" class="form-horizontal" style="margin-bottom: 50px;" ng-submit="createNewMember()" novalidate>
-        <div class="form-group">
+        <div class="form-group" ng-class="{'has-error': newMemberForm.name.$invalid}">
           <label for="name" class="col-sm-3 control-label">Name</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" name="name" placeholder="Enter name"
-              ng-model="newMember.name" required>
+              ng-model="newMember.name" required ng-minlength="2">
+            <p ng-show="newMemberForm.name.$error.minlength" class="help-block">Name is required</p>
           </div>
         </div>
         <div class="form-group">
@@ -22,6 +23,7 @@
           <div class="col-sm-9">
             <input type="text" class="form-control" name="email" placeholder="Enter email"
               ng-model="newMember.email" required>
+            <p ng-show="newMemberForm.email.$error.email" class="help-block">Email is required</p>
           </div>
         </div>
         <div class="form-group">
@@ -78,7 +80,7 @@
             <th style="text-align: center;">Delete</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody ng-if="users">
           <tr ng-repeat="user in users">
             <td>{{ user.unique_id }}</td>
             <td>{{ user.name }}</td>

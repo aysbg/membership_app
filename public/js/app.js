@@ -2,7 +2,7 @@
   "use strict";
 
   // Load the app
-  angular.module('gymApp', ['ngRoute'])
+  angular.module('gymApp', ['ngRoute', 'ui.bootstrap'])
 
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
@@ -50,8 +50,8 @@
           // if you're logged out send to login page.
           if (next.requireLogin && !AdminService.getAuthStatus()) {
             // [ToDo] uncomment these two lines after you are done working on admin page
-            //$location.path('/');
-            //event.preventDefault();
+            $location.path('/');
+            event.preventDefault();
           }
         });
       }

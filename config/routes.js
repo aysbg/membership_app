@@ -18,7 +18,6 @@ module.exports = function(app) {
 
   app.post('/users', function(req, res) {
     var user = new User(req.body);
-    console.log(user);
 
     user.save(function(err) {
       if (!err) {
@@ -32,8 +31,14 @@ module.exports = function(app) {
   });
 
   app.delete('/users/:unique_id', function(req, res) {
-    // .find({ id:333 }).remove().exec();
-    User.find({ unique_id: req.params.unique_id }).remove().exec();
+    User.remove({ unique_id: req.params.unique_id }, function(err) {
+      if(!err) {
+        console.log('member is removed');
+        return res.send(true);
+      } else {
+        console.log(err);
+      }
+    });
   });
 
 

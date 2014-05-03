@@ -3,12 +3,10 @@
 
   var AlertService = ['$rootScope',
     function($rootScope) {
-      var alertService = {};
-
       // create an array of alerts available globally
       $rootScope.alerts = [];
 
-      return {
+      var alertService = {
         show: function(type, msg) {
           return $rootScope.alerts.push({
             type: type,
@@ -23,14 +21,16 @@
           return this.closeAlertIdx($rootScope.alerts.indexOf(alert));
         },
 
-        closeAlertIdx: function(idx) {
+        closeAlertIdx: function(index) {
           $rootScope.alerts.splice(index, 1);
         },
 
         clear: function() {
           $rootScope.alerts = [];
         }
-      }
+      };
+
+      return alertService;
     }
   ];
 
