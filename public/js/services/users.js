@@ -10,6 +10,10 @@
 
         create: function(member) {
           return $http.post('/users', member);
+        },
+
+        delete: function(uId) {
+          return $http.delete('/users/' + uId)
         }
       }
     }

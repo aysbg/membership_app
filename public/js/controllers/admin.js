@@ -7,10 +7,13 @@
       $scope.users = {};
 
       $scope.init = function() {
+        $scope.getUsers();
+      };
+
+      $scope.getUsers = function() {
         // Get users
         UserService.get()
           .success(function(data) {
-            console.log(data);
             if (data.length > 0) {
               $scope.users = data;
             }
@@ -18,6 +21,9 @@
       };
 
       $scope.createNewMember = function() {
+        if(!$scope.newMemberForm.$valid)
+          return;
+
         $scope.newMember.terms = $scope.newMember.terms || 0;
 
         var user = {
@@ -37,11 +43,21 @@
 
         UserService.create(user)
           .success(function(data, status) {
-            console.log(data);
+            $scope.getUsers();
             AlertService.show('alert-success', 'New member has been created!');
           })
           .error(function(data, status) {
             console.log(data);
+          });
+      };
+
+      $scope.deleteMember = function(member) {
+        UserService.delete(member.unique_id)
+          .success(function(data, status) {
+            $scope.getUsers();
+          })
+          .error(function(data, status) {
+            console.log('something is seriously messed up');
           });
       };
     }

@@ -31,6 +31,11 @@ module.exports = function(app) {
     return res.send(user);
   });
 
+  app.delete('/users/:unique_id', function(req, res) {
+    // .find({ id:333 }).remove().exec();
+    User.find({ unique_id: req.params.unique_id }).remove().exec();
+  });
+
 
   // Admin routes
   // -------------------------

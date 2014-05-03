@@ -3,8 +3,8 @@ var mongoose = require('mongoose'),
 
 var userSchema = new Schema({
   name: String,
-  unique_id: String,
-  email: String,
+  unique_id: { type: String, unique: true },
+  email: { type: String, unique: true },
   phone: String,
   register_date: { type: Date, default: Date.now },
   membership: {

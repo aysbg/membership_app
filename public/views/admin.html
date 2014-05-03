@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-7">
       <legend>New member</legend>
-      <form name="newMemberForm" class="form-horizontal" style="margin-bottom: 50px;" novalidate>
+      <form name="newMemberForm" class="form-horizontal" style="margin-bottom: 50px;" ng-submit="createNewMember()" novalidate>
         <div class="form-group">
           <label for="name" class="col-sm-3 control-label">Name</label>
           <div class="col-sm-9">
@@ -57,7 +57,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-9">
-            <button type="submit" class="btn btn-primary" ng-click="createNewMember()">Create</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="newMemberForm.$invalid">Create</button>
           </div>
         </div>
       </form>
@@ -74,8 +74,8 @@
             <th>Email</th>
             <th>Join date</th>
             <th>Membership</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th style="text-align: center;">Edit</th>
+            <th style="text-align: center;">Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -83,10 +83,14 @@
             <td>{{ user.unique_id }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
-            <td>{{ user.register_date }}</td>
+            <td>{{ user.register_date | date:'dd.MM.yyyy' }}</td>
             <td></td>
-            <td></td>
-            <td></td>
+            <td style="text-align: center;">
+              <a href="#" ng-click="editMember(user)"><span class="glyphicon glyphicon-pencil"></span></a>
+            </td>
+            <td style="text-align: center;">
+              <a href="#" ng-click="deleteMember(user)"><span class="glyphicon glyphicon-remove"></span></a>
+            </td>
           </tr>
         </tbody>
       </table>
