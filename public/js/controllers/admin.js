@@ -1,9 +1,24 @@
 (function(angular) {
   "use strict";
 
-  var AdminCtrl = ["$window", "$rootScope", "$scope", "$http", "AdminService",
-    function($window, $rootScope, $scope, $http, AdminService) {
+  var AdminCtrl = ["$window", "$rootScope", "$scope", "$http", "AdminService", "UserService",
+    function($window, $rootScope, $scope, $http, AdminService, UserService) {
+      $scope.newMember = {};
+      $scope.users = {};
 
+      $scope.init = function() {
+        // Get users
+        UserService.get()
+          .success(function(data) {
+            if (data.length === 0) {
+              $scope.users = data;
+            }
+          });
+      };
+
+      $scope.createNewMember = function() {
+
+      };
     }
   ];
 

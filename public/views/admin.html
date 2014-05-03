@@ -1,24 +1,102 @@
-<section ng-controller="AdminCtrl">
-  <form novalidate>
-    add new user
-  </form>
+<section ng-controller="AdminCtrl" ng-init="init()">
+  <div class="row">
+    <div class="col-md-7">
+      <legend>New member</legend>
+      <form name="newMemberForm" class="form-horizontal" novalidate style="margin-bottom: 50px;">
+        <div class="form-group">
+          <label for="name" class="col-sm-3 control-label">Name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="name" placeholder="Enter name"
+              ng-model="newMember.name" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="uniqueId" class="col-sm-3 control-label">Unique ID</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="uniqueId" placeholder="Enter Unique ID"
+              ng-model="newMember.uniqueId" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-sm-3 control-label">Email</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="email" placeholder="Enter email"
+              ng-model="newMember.email" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="col-sm-3 control-label">Phone</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="phone" placeholder="Enter phone"
+              ng-model="newMember.phone" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone" class="col-sm-3 control-label">Phone</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="phone" placeholder="Enter phone"
+              ng-model="newMember.phone" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="membership" class="col-sm-3 control-label">Membership</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" name="year" placeholder="Year"
+              ng-model="newMember.year">
+          </div>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" name="month" placeholder="Month"
+              ng-model="newMember.month">
+          </div>
+        </div>
+        <div class="form-group">
+         <div class="col-sm-offset-3 col-sm-3">
+            <div class="checkbox">
+              <label>
+                <input name="fullMonth" ng-model="newMember.fullMonth" type="checkbox"> Full month
+              </label>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" name="terms" placeholder="Terms"
+              ng-if="!newMember.fullMonth" ng-model="newMember.terms">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-9">
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Join date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="user in users">
-        <td>{{ user.unique_id }}</td>
-        <td>{{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.register_date }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Join date</th>
+            <th>Membership</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in users">
+            <td>{{ user.unique_id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.register_date }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
