@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-7">
       <legend>New member</legend>
-      <form name="newMemberForm" class="form-horizontal" novalidate style="margin-bottom: 50px;">
+      <form name="newMemberForm" class="form-horizontal" style="margin-bottom: 50px;" novalidate>
         <div class="form-group">
           <label for="name" class="col-sm-3 control-label">Name</label>
           <div class="col-sm-9">
@@ -22,13 +22,6 @@
           <div class="col-sm-9">
             <input type="text" class="form-control" name="email" placeholder="Enter email"
               ng-model="newMember.email" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="phone" class="col-sm-3 control-label">Phone</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" name="phone" placeholder="Enter phone"
-              ng-model="newMember.phone" required>
           </div>
         </div>
         <div class="form-group">
@@ -59,12 +52,12 @@
           </div>
           <div class="col-sm-3">
             <input type="text" class="form-control" name="terms" placeholder="Terms"
-              ng-if="!newMember.fullMonth" ng-model="newMember.terms">
+              ng-if="!newMember.fullMonth" ng-model="newMember.terms" value="0">
           </div>
         </div>
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-9">
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary" ng-click="createNewMember()">Create</button>
           </div>
         </div>
       </form>

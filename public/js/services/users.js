@@ -6,6 +6,10 @@
       return {
         get: function() {
           return $http.get('/users');
+        },
+
+        create: function(member) {
+          return $http.post('/users', member);
         }
       }
     }

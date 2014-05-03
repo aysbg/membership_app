@@ -18,14 +18,17 @@ module.exports = function(app) {
 
   app.post('/users', function(req, res) {
     var user = new User(req.body);
+    console.log(user);
 
     user.save(function(err) {
-      if(!err) {
-        return true;
+      if (!err) {
+        return console.log("member created");
       } else {
-        return err;
+        return console.log(err);
       }
     });
+
+    return res.send(user);
   });
 
 

@@ -9,12 +9,12 @@
         return $http.get('/admins');
       },
 
-      // call to POST and create a new nerd
+      // call to POST and create a new member
       create: function(newAdmin) {
         return $http.post('/admins', newAdmin);
       },
 
-      // call to DELETE a nerd
+      // call to DELETE a member
       delete: function(id) {
         // return $http.delete('/api/nerds/' + id);
       },
