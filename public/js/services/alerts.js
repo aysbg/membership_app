@@ -1,20 +1,26 @@
 (function (angular) {
   "use strict";
 
-  var AlertService = ['$rootScope',
-    function($rootScope) {
+  var AlertService = ['$rootScope', '$timeout',
+    function($rootScope, $timeout) {
       // create an array of alerts available globally
       $rootScope.alerts = [];
 
       var alertService = {
-        show: function(type, msg) {
-          return $rootScope.alerts.push({
+        show: function(type, msg, timeout) {
+          $rootScope.alerts.push({
             type: type,
             msg: msg,
             close: function() {
               return alertService.closeAlert(this);
             }
           });
+
+          if(timeout) {
+            $timeout(function(){
+              alertService.closeAlert(this);
+            }, timeout);
+          }
         },
 
         closeAlert: function(alert) {

@@ -45,7 +45,7 @@
           .success(function(data, status) {
             $scope.newMember = {};
             $scope.getUsers();
-            AlertService.show('success', 'New member has been created!');
+            AlertService.show('success', 'New member has been created!', 2500);
           })
           .error(function(data, status) {
             console.log(data);
@@ -56,7 +56,7 @@
         UserService.delete(member.unique_id)
           .success(function(data, status) {
             $scope.getUsers();
-            AlertService.show('info', 'Member has been deleted!');
+            AlertService.show('info', 'Member has been deleted!', 2500);
           })
           .error(function(data, status) {
             console.log('something is seriously messed up');

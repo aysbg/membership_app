@@ -2,23 +2,29 @@
   <div class="row">
     <div class="col-md-7">
       <legend>New member</legend>
+
       <form name="newMemberForm" class="form-horizontal" style="margin-bottom: 50px;" ng-submit="createNewMember()" novalidate>
-        <div class="form-group" ng-class="{'has-error': newMemberForm.name.$invalid}">
+        <div class="form-group"
+             ng-class="{ 'has-error': newMemberForm.name.$invalid && !newMemberForm.name.$pristine }">
           <label for="name" class="col-sm-3 control-label">Name</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" name="name" placeholder="Enter name"
-              ng-model="newMember.name" required ng-minlength="2">
+              ng-model="newMember.name" required>
             <p ng-show="newMemberForm.name.$error.minlength" class="help-block">Name is required</p>
           </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group"
+             ng-class="{ 'has-error': newMemberForm.uniqueId.$invalid && !newMemberForm.uniqueId.$pristine }">
           <label for="uniqueId" class="col-sm-3 control-label">Unique ID</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" name="uniqueId" placeholder="Enter Unique ID"
               ng-model="newMember.uniqueId" required>
           </div>
         </div>
-        <div class="form-group">
+
+        <div class="form-group"
+             ng-class="{ 'has-error': newMemberForm.email.$invalid && !newMemberForm.email.$pristine }">
           <label for="email" class="col-sm-3 control-label">Email</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" name="email" placeholder="Enter email"
@@ -26,6 +32,7 @@
             <p ng-show="newMemberForm.email.$error.email" class="help-block">Email is required</p>
           </div>
         </div>
+
         <div class="form-group">
           <label for="phone" class="col-sm-3 control-label">Phone</label>
           <div class="col-sm-9">
@@ -33,6 +40,7 @@
               ng-model="newMember.phone" required>
           </div>
         </div>
+
         <div class="form-group">
           <label for="membership" class="col-sm-3 control-label">Membership</label>
           <div class="col-sm-3">
@@ -44,6 +52,7 @@
               ng-model="newMember.month">
           </div>
         </div>
+
         <div class="form-group">
          <div class="col-sm-offset-3 col-sm-3">
             <div class="checkbox">
@@ -57,6 +66,7 @@
               ng-if="!newMember.fullMonth" ng-model="newMember.terms" value="0">
           </div>
         </div>
+
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-9">
             <button type="submit" class="btn btn-primary" ng-disabled="newMemberForm.$invalid">Create</button>
@@ -80,7 +90,7 @@
             <th style="text-align: center;">Delete</th>
           </tr>
         </thead>
-        <tbody ng-if="users">
+        <tbody>
           <tr ng-repeat="user in users">
             <td>{{ user.unique_id }}</td>
             <td>{{ user.name }}</td>
