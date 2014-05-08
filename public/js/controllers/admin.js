@@ -1,8 +1,8 @@
 (function(angular) {
   "use strict";
 
-  var AdminCtrl = ["$timeout", "$rootScope", "$scope", "$http", "AdminService", "UserService", "AlertService",
-    function($timeout, $rootScope, $scope, $http, AdminService, UserService, AlertService) {
+  var AdminCtrl = ["$timeout", "$modal", "$rootScope", "$scope", "$http", "AdminService", "UserService", "AlertService",
+    function($timeout, $modal, $rootScope, $scope, $http, AdminService, UserService, AlertService) {
       $scope.newMember = {};
       $scope.users = {};
       $scope.months = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -97,6 +97,22 @@
           email: member.email,
           phone: member.phone
         };
+      };
+
+      $scope.openMembershipModal = function (userId) {
+
+        var modalInstance = $modal.open({
+          templateUrl: 'userMembershipModal',
+          controller: AdminCtrl,
+          size: 'sm',
+          keyboard: false
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+          $scope.selected = selectedItem;
+        }, function () {
+          console.log('Modal dismissed at: ' + new Date());
+        });
       };
     }
   ];
