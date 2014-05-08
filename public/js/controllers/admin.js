@@ -5,18 +5,19 @@
     function($window, $rootScope, $scope, $http, AdminService, UserService, AlertService) {
       $scope.newMember = {};
       $scope.users = {};
+      $scope.months = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+      $scope.showUserList = true;
+      $scope.showEditUserForm = false;
 
       $scope.init = function() {
         $scope.getUsers();
       };
 
       $scope.getUsers = function() {
-        // Get users
         UserService.get()
           .success(function(data) {
-            if (data.length > 0) {
-              $scope.users = data;
-            }
+            $scope.users = data;
           });
       };
 
@@ -52,6 +53,25 @@
           });
       };
 
+      $scope.editMember = function(member) {
+        var user = {
+          name: $scope.editMember.name,
+          unique_id: $scope.editMember.uniqueId,
+          email: $scope.editMember.email,
+          phone: $scope.editMember.phone
+        };
+
+        UserService
+          .update(member.unique_id, user)
+          .success(function(data, status) {
+            $scope.getUsers();
+            AlertService.show('info', 'Member has been updated!', 2500);
+          })
+          .error(function(data, status) {
+            console.log('something went wrong with the update process');
+          });
+      };
+
       $scope.deleteMember = function(member) {
         UserService.delete(member.unique_id)
           .success(function(data, status) {
@@ -61,6 +81,19 @@
           .error(function(data, status) {
             console.log('something is seriously messed up');
           });
+      };
+
+      $scope.showEditForm = function(member) {
+        $scope.showUserList = false;
+        $scope.showEditUserForm = true;
+
+        // Set values to inputs:
+        $scope.editMember = {
+          name: member.name,
+          uniqueId: member.unique_id,
+          email: member.email,
+          phone: member.phone
+        };
       };
     }
   ];

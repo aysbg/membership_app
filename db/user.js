@@ -7,14 +7,16 @@ var userSchema = new Schema({
   email: { type: String, unique: true },
   phone: String,
   register_date: { type: Date, default: Date.now },
-  membership: {
-    year: Number,
-    month: String,
-    status: {
-      full_month: Boolean,
-      terms_remaining: Number,
+  membership: [
+    {
+      year: Number,
+      month: String,
+      status: {
+        full_month: Boolean,
+        terms_remaining: Number,
+      }
     }
-  }
+  ]
 });
 
 module.exports = mongoose.model('User', userSchema);

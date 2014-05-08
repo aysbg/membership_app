@@ -2,10 +2,8 @@
   <div class="row">
     <div class="col-md-7">
       <legend>New member</legend>
-
       <form name="newMemberForm" class="form-horizontal" style="margin-bottom: 50px;" ng-submit="createNewMember()" novalidate>
-        <div class="form-group"
-             ng-class="{ 'has-error': newMemberForm.name.$invalid && !newMemberForm.name.$pristine }">
+        <div class="form-group">
           <label for="name" class="col-sm-3 control-label">Name</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" name="name" placeholder="Enter name"
@@ -14,8 +12,7 @@
           </div>
         </div>
 
-        <div class="form-group"
-             ng-class="{ 'has-error': newMemberForm.uniqueId.$invalid && !newMemberForm.uniqueId.$pristine }">
+        <div class="form-group">
           <label for="uniqueId" class="col-sm-3 control-label">Unique ID</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" name="uniqueId" placeholder="Enter Unique ID"
@@ -23,8 +20,7 @@
           </div>
         </div>
 
-        <div class="form-group"
-             ng-class="{ 'has-error': newMemberForm.email.$invalid && !newMemberForm.email.$pristine }">
+        <div class="form-group">
           <label for="email" class="col-sm-3 control-label">Email</label>
           <div class="col-sm-9">
             <input type="text" class="form-control" name="email" placeholder="Enter email"
@@ -48,8 +44,9 @@
               ng-model="newMember.year">
           </div>
           <div class="col-sm-3">
-            <input type="text" class="form-control" name="month" placeholder="Month"
-              ng-model="newMember.month">
+            <select name="month" ng-model="newMember.month">
+              <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+            </select>
           </div>
         </div>
 
@@ -77,7 +74,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" ng-hide="showEditUserForm">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -92,7 +89,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="user in users">
-            <td>{{ user.unique_id }}</td>
+            <td><a href="#" ng-click="showEditForm(user)">{{ user.unique_id }}</a></td>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.register_date | date:'dd.MM.yyyy' }}</td>
@@ -106,6 +103,50 @@
           </tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="col-md-7" ng-show="showEditUserForm">
+      <form name="editMemberForm" class="form-horizontal" style="margin-bottom: 50px;" ng-submit="editMember()" novalidate>
+        <div class="form-group">
+          <label for="name" class="col-sm-3 control-label">Name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="name" placeholder="Enter name"
+              ng-model="editMember.name" required>
+            <p ng-show="editMemberForm.name.$error.minlength" class="help-block">Name is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="uniqueId" class="col-sm-3 control-label">Unique ID</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="uniqueId" placeholder="Enter Unique ID"
+              ng-model="editMember.uniqueId" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="col-sm-3 control-label">Email</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="email" placeholder="Enter email"
+              ng-model="editMember.email" required>
+            <p ng-show="editMemberForm.email.$error.email" class="help-block">Email is required</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone" class="col-sm-3 control-label">Phone</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" name="phone" placeholder="Enter phone"
+              ng-model="editMember.phone" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-9">
+            <button type="submit" class="btn btn-primary" ng-disabled="editMemberForm.$invalid">Update</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </section>
