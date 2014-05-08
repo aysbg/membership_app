@@ -99,20 +99,21 @@
         };
       };
 
-      $scope.openMembershipModal = function (userId) {
+      $scope.openMembershipModal = function (user) {
+        $scope.memberMemberships = user.membership;
 
-        var modalInstance = $modal.open({
-          templateUrl: 'userMembershipModal',
-          controller: AdminCtrl,
-          size: 'sm',
-          keyboard: false
-        });
+        // var modalInstance = $modal.open({
+        //   templateUrl: 'userMembershipModal',
+        //   controller: AdminCtrl,
+        //   size: 'md',
+        //   keyboard: false
+        // });
 
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-        }, function () {
-          console.log('Modal dismissed at: ' + new Date());
-        });
+        // modalInstance.result.then(function (selectedItem) {
+        //   $scope.selected = selectedItem;
+        // }, function () {
+        //   console.log('Modal dismissed at: ' + new Date());
+        // });
       };
     }
   ];
