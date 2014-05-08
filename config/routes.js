@@ -41,6 +41,19 @@ module.exports = function(app) {
     });
   });
 
+  app.put('/users/:unique_id', function(req, res) {
+    var memberData = req.body;
+    console.log(memberData);
+    User.update({ unique_id: req.params.unique_id }, memberData, function(err) {
+      if(!err) {
+        console.log('member is updated');
+        return res.send(true);
+      } else {
+        console.log(err);
+      }
+    });
+  });
+
 
   // Admin routes
   // -------------------------

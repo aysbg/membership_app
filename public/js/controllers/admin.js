@@ -1,14 +1,15 @@
 (function(angular) {
   "use strict";
 
-  var AdminCtrl = ["$window", "$rootScope", "$scope", "$http", "AdminService", "UserService", "AlertService",
-    function($window, $rootScope, $scope, $http, AdminService, UserService, AlertService) {
+  var AdminCtrl = ["$timeout", "$rootScope", "$scope", "$http", "AdminService", "UserService", "AlertService",
+    function($timeout, $rootScope, $scope, $http, AdminService, UserService, AlertService) {
       $scope.newMember = {};
       $scope.users = {};
       $scope.months = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'];
-      $scope.showUserList = true;
-      $scope.showEditUserForm = false;
+      $scope.showForms = {};
+      $scope.showForms.newMember = true;
+      $scope.showForms.editMember = false;
 
       $scope.init = function() {
         $scope.getUsers();
@@ -53,7 +54,7 @@
           });
       };
 
-      $scope.editMember = function(member) {
+      $scope.updateMember = function() {
         var user = {
           name: $scope.editMember.name,
           unique_id: $scope.editMember.uniqueId,
@@ -61,11 +62,14 @@
           phone: $scope.editMember.phone
         };
 
-        UserService
-          .update(member.unique_id, user)
+        UserService.update(user.unique_id, user)
           .success(function(data, status) {
             $scope.getUsers();
             AlertService.show('info', 'Member has been updated!', 2500);
+
+            $timeout(function() {
+              $scope.showForms.editMember = false;
+            }, 2500);
           })
           .error(function(data, status) {
             console.log('something went wrong with the update process');
@@ -84,8 +88,7 @@
       };
 
       $scope.showEditForm = function(member) {
-        $scope.showUserList = false;
-        $scope.showEditUserForm = true;
+        $scope.showForms.editMember = true;
 
         // Set values to inputs:
         $scope.editMember = {

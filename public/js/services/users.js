@@ -12,10 +12,15 @@
           return $http.post('/users', member);
         },
 
+        update: function(uId, member) {
+          console.log(uId);
+          return $http.put('/users/' + uId, member);
+        },
+
         delete: function(uId) {
-          return $http.delete('/users/' + uId)
+          return $http.delete('/users/' + uId);
         }
-      }
+      };
     }
   ];
 

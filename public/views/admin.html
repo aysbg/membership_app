@@ -1,5 +1,5 @@
 <section ng-controller="AdminCtrl" ng-init="init()">
-  <div class="row">
+  <div class="row" ng-hide="showForms.editMember">
     <div class="col-md-7">
       <legend>New member</legend>
       <form name="newMemberForm" class="form-horizontal" style="margin-bottom: 50px;" ng-submit="createNewMember()" novalidate>
@@ -74,7 +74,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12" ng-hide="showEditUserForm">
+    <div class="col-md-12" ng-hide="showForms.editMember">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -105,8 +105,8 @@
       </table>
     </div>
 
-    <div class="col-md-7" ng-show="showEditUserForm">
-      <form name="editMemberForm" class="form-horizontal" style="margin-bottom: 50px;" ng-submit="editMember()" novalidate>
+    <div class="col-md-7" ng-show="showForms.editMember">
+      <form name="editMemberForm" class="form-horizontal" style="margin-bottom: 50px;" ng-submit="updateMember()" novalidate>
         <div class="form-group">
           <label for="name" class="col-sm-3 control-label">Name</label>
           <div class="col-sm-9">

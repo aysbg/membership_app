@@ -3,3 +3,9 @@
 
 #content {
   padding: 30px 0; }
+
+.alert {
+  transition: all 0.25s ease; }
+
+.ng-hide {
+  transition: all 0.25s ease; }
