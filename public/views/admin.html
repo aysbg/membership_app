@@ -104,13 +104,14 @@
             <td>{{ user.email }}</td>
             <td>{{ user.register_date | date:'dd.MM.yyyy' }}</td>
             <td>
-              <a href="#" ng-click="openMembershipModal(user)">
+              <a href="#" ng-click="openMembershipList()">
                 View Status
               </a>
-              <ul ng-hide="">
+              <ul class="membership-list" ng-class="showMembershipList == true ? 'active':''">
                 <li ng-repeat="mm in user.membership">
                   {{ mm.year }}, {{ mm.month }}
                 </li>
+                <li><a href="#">Add new</a></li>
               </ul>
             </td>
             <td style="text-align: center;">

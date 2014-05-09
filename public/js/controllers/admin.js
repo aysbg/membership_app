@@ -10,6 +10,7 @@
       $scope.showForms = {};
       $scope.showForms.newMember = true;
       $scope.showForms.editMember = false;
+      $scope.showMembershipList = false;
 
       $scope.init = function() {
         $scope.getUsers();
@@ -97,6 +98,10 @@
           email: member.email,
           phone: member.phone
         };
+      };
+
+      $scope.openMembershipList = function() {
+        $scope.showMembershipList = !$scope.showMembershipList;
       };
 
       $scope.openMembershipModal = function (user) {

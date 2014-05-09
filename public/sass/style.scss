@@ -10,3 +10,22 @@
 .find-member {
   padding-bottom: 20px;
 }
+
+.membership-list {
+  height: auto;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: max-height .3s linear;
+
+  li {
+    &:first-child {
+      margin-top: 10px;
+    }
+  }
+
+  &.active {
+    max-height: 200px;
+  }
+}
