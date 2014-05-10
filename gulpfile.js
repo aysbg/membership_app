@@ -7,7 +7,7 @@ var gulp = require('gulp'),
     //nodemon = require('gulp-nodemon')
 
 var paths = {
-  styles: ['public/sass/*.scss']
+  styles: ['public/scss/*.scss']
 };
 
 gulp.task('scripts', function() {

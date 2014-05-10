@@ -1,12 +1,11 @@
 (function(angular) {
   "use strict";
 
-  var AdminCtrl = ["$timeout", "$modal", "$rootScope", "$scope", "$http", "AdminService", "UserService", "AlertService", 'Helpers',
-    function($timeout, $modal, $rootScope, $scope, $http, AdminService, UserService, AlertService, Helpers) {
+  var AdminCtrl = ["$timeout", "$modal", "$rootScope", "$scope", "$http", "AdminService", "AdminModel", "UserService", "AlertService", 'Helpers',
+    function($timeout, $modal, $rootScope, $scope, $http, AdminService, AdminModel, UserService, AlertService, Helpers) {
       $scope.newMember = {};
       $scope.users = {};
-      $scope.months = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'];
+      $scope.months = AdminModel.months;
       $scope.showForms = {};
       $scope.showForms.newMember = true;
       $scope.showForms.editMember = false;
@@ -139,8 +138,9 @@
   ];
 
 
-  var ModalCtrl = ['$scope', '$modalInstance', 'user',
-    function($scope, $modalInstance, user) {
+  var ModalCtrl = ['$scope', '$modalInstance', 'user', 'AdminModel',
+    function($scope, $modalInstance, user, AdminModel) {
+      $scope.months = AdminModel.months;
       $scope.user = user;
       $scope.membership = {};
 

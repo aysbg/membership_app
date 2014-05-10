@@ -21,3 +21,62 @@
       margin-top: 7px; }
   .membership-list.active {
     max-height: 200px; }
+
+label.custom-select {
+  display: inline-block;
+  position: relative;
+  width: 100%; }
+  label.custom-select:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 1px;
+    width: 30px;
+    height: 28px;
+    background: #fff;
+    pointer-events: none;
+    z-index: 98; }
+  label.custom-select:after {
+    content: '>';
+    position: absolute;
+    right: 16px;
+    top: 8px;
+    padding: 0 0 2px;
+    font: 14px "Consolas", monospace;
+    color: #666;
+    border: none;
+    pointer-events: none;
+    z-index: 99;
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg); }
+  label.custom-select select {
+    position: relative;
+    display: inline-block;
+    height: 34px;
+    width: 100%;
+    margin: 0;
+    padding: 7px 12px;
+    line-height: 18px;
+    border-radius: 4px;
+    box-shadow: none;
+    background: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    font-weight: normal;
+    transition: all 0.2s linear; }
+    label.custom-select select option {
+      border: 0 none;
+      outline: 0 none; }
+    label.custom-select select:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000; }
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    label.custom-select select {
+      padding-right: 18px; } }

@@ -44,9 +44,11 @@
               ng-model="newMember.year">
           </div>
           <div class="col-sm-3">
-            <select name="month" ng-model="newMember.month">
-              <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
-            </select>
+            <label class="custom-select">
+              <select name="month" ng-model="newMember.month">
+                <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+              </select>
+            </label>
           </div>
         </div>
 

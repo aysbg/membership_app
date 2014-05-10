@@ -1,0 +1,120 @@
+// Mixins
+@mixin rotate($degrees) {
+  -webkit-transform: rotate($degrees);
+      -ms-transform: rotate($degrees); // IE9 only
+          transform: rotate($degrees);
+}
+
+
+// Main styles
+.navbar {
+  margin-bottom: 0;
+}
+
+#content {
+  padding: 20px 0;
+}
+
+.find-member {
+  padding-bottom: 20px;
+}
+
+.membership-list {
+  height: auto;
+  max-height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  transition: max-height .3s linear;
+
+  li {
+    padding: 3px 0;
+    border-top: 1px solid #e0e0e0;
+
+    &:first-child {
+      margin-top: 7px;
+    }
+  }
+
+  &.active {
+    max-height: 200px;
+  }
+}
+
+// Custom select element
+// -------------------------
+label.custom-select {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+
+    &:before {
+        content:'';
+        display: block;
+        position: absolute;
+        right: 5px;
+        top: 1px;
+        width: 30px;
+        height: 28px;
+        background: #fff;
+        pointer-events: none;
+        z-index: 98;
+    }
+
+    &:after {
+        content:'>';
+        position: absolute;
+        right: 16px;
+        top: 8px;
+        padding: 0 0 2px;
+        font: 14px "Consolas", monospace;
+        color: #666;
+
+        //transform: rotate(90deg);
+        border: none;
+        pointer-events:none;
+        z-index: 99;
+        @include rotate(90deg);
+    }
+
+    select {
+        position: relative;
+        display: inline-block;
+        height: 34px;
+        width: 100%;
+        margin: 0;
+        padding: 7px 12px;
+        line-height: 18px;
+        border-radius:4px;
+        box-shadow: none;
+        background: #fff;
+        color: #333;
+        border: 1px solid #ccc;
+        outline: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s linear;
+
+        option {
+            border: 0 none;
+            outline: 0 none;
+        }
+
+        &:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 #000;
+        }
+
+    }
+
+    // Firefox has gigantic padding-right property
+    // so this is only for webkit based browsers
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        select {
+            padding-right:18px
+        }
+    }
+}
