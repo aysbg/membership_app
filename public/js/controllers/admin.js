@@ -10,7 +10,8 @@
       $scope.showForms = {};
       $scope.showForms.newMember = true;
       $scope.showForms.editMember = false;
-      $scope.showMembershipList = false;
+      $scope.showForms.editMembership = false;
+      $scope.showMembershipList = {};
 
       $scope.init = function() {
         $scope.getUsers();
@@ -100,25 +101,12 @@
         };
       };
 
-      $scope.openMembershipList = function() {
-        $scope.showMembershipList = !$scope.showMembershipList;
+      $scope.openMembershipList = function(uniqueId) {
+        $scope.showMembershipList[uniqueId] = !$scope.showMembershipList[uniqueId];
       };
 
-      $scope.openMembershipModal = function (user) {
-        $scope.memberMemberships = user.membership;
-
-        // var modalInstance = $modal.open({
-        //   templateUrl: 'userMembershipModal',
-        //   controller: AdminCtrl,
-        //   size: 'md',
-        //   keyboard: false
-        // });
-
-        // modalInstance.result.then(function (selectedItem) {
-        //   $scope.selected = selectedItem;
-        // }, function () {
-        //   console.log('Modal dismissed at: ' + new Date());
-        // });
+      $scope.addNewMembership = function(member) {
+        $scope.showForms.editMembership = true;
       };
     }
   ];

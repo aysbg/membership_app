@@ -104,14 +104,16 @@
             <td>{{ user.email }}</td>
             <td>{{ user.register_date | date:'dd.MM.yyyy' }}</td>
             <td>
-              <a href="#" ng-click="openMembershipList()">
+              <a href="#" ng-click="openMembershipList(user.unique_id)">
                 View Status
               </a>
-              <ul class="membership-list" ng-class="showMembershipList == true ? 'active':''">
+              <ul class="membership-list" ng-class="showMembershipList[user.unique_id] == true ? 'active':''">
                 <li ng-repeat="mm in user.membership">
                   {{ mm.year }}, {{ mm.month }}
+                  <span ng-if="mm.status.full_month"> - Full month<span>
+                  <span ng-if="!mm.status.full_month"> - {{ mm.status.terms }}</span>
                 </li>
-                <li><a href="#">Add new</a></li>
+                <li><a href="#" ng-click="addNewMembership(user)">Add new</a></li>
               </ul>
             </td>
             <td style="text-align: center;">
@@ -168,5 +170,43 @@
         </div>
       </form>
     </div>
+
+    <div class="col-md-7" ng-show="showForms.editMembership">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="membership" class="col-sm-3 control-label">Membership</label>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" name="year" placeholder="Year"
+              ng-model="newMember.year">
+          </div>
+          <div class="col-sm-3">
+            <select name="month" ng-model="newMember.month">
+              <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+         <div class="col-sm-offset-3 col-sm-3">
+            <div class="checkbox">
+              <label>
+                <input name="fullMonth" ng-model="newMember.fullMonth" type="checkbox"> Full month
+              </label>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <input type="text" class="form-control" name="terms" placeholder="Terms"
+              ng-if="!newMember.fullMonth" ng-model="newMember.terms" value="0">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-3 col-sm-9">
+            <button type="submit" class="btn btn-primary" ng-disabled="newMemberForm.$invalid">Create</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
   </div>
 </section>
