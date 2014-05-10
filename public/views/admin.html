@@ -104,10 +104,10 @@
             <td>{{ user.email }}</td>
             <td>{{ user.register_date | date:'dd.MM.yyyy' }}</td>
             <td>
-              <a href="#" ng-click="openMembershipList(user.unique_id)">
+              <a href="#" membership-list info="user.unique_id">
                 View Status
               </a>
-              <ul class="membership-list" ng-class="showMembershipList[user.unique_id] == true ? 'active':''">
+              <ul class="membership-list">
                 <li ng-repeat="mm in user.membership">
                   {{ mm.year }}, {{ mm.month }}
                   <span ng-if="mm.status.full_month"> - Full month<span>
@@ -170,8 +170,15 @@
         </div>
       </form>
     </div>
+  </div>
+</section>
 
-    <div class="col-md-7" ng-show="showForms.editMembership">
+
+ <script type="text/ng-template" id="userMembershipModal">
+    <div class="modal-header">
+        <h3 class="modal-title">Update {{ user.name }}'s membership</h3>
+    </div>
+    <div class="modal-body">
       <form class="form-horizontal">
         <div class="form-group">
           <label for="membership" class="col-sm-3 control-label">Membership</label>
@@ -207,6 +214,8 @@
         </div>
       </form>
     </div>
-
-  </div>
-</section>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>

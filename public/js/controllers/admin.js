@@ -1,8 +1,8 @@
 (function(angular) {
   "use strict";
 
-  var AdminCtrl = ["$timeout", "$modal", "$rootScope", "$scope", "$http", "AdminService", "UserService", "AlertService",
-    function($timeout, $modal, $rootScope, $scope, $http, AdminService, UserService, AlertService) {
+  var AdminCtrl = ["$timeout", "$modal", "$rootScope", "$scope", "$http", "AdminService", "UserService", "AlertService", 'Helpers',
+    function($timeout, $modal, $rootScope, $scope, $http, AdminService, UserService, AlertService, Helpers) {
       $scope.newMember = {};
       $scope.users = {};
       $scope.months = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -102,15 +102,57 @@
       };
 
       $scope.openMembershipList = function(uniqueId) {
+        var len = Object.keys($scope.showMembershipList).length;
+
+        if (len > 0) {
+          angular.element('.membership-list').removeClass('active');
+          $scope.showMembershipList = {};
+        }
+
         $scope.showMembershipList[uniqueId] = !$scope.showMembershipList[uniqueId];
       };
 
       $scope.addNewMembership = function(member) {
-        $scope.showForms.editMembership = true;
+        //$scope.showForms.editMembership = true;
+
+        var modalInstance = $modal.open({
+          templateUrl: 'userMembershipModal',
+          controller: ModalCtrl,
+          size: 'md',
+          keyboard: false,
+          resolve: {
+            user: function() {
+              return member;
+            }
+          }
+        });
+
+        modalInstance.result.then(function (updatedMembership) {
+          console.log(updatedMembership);
+        }, function () {
+          console.log('Modal dismissed at: ' + new Date());
+        });
+      };
+    }
+  ];
+
+
+  var ModalCtrl = ['$scope', '$modalInstance', 'user',
+    function($scope, $modalInstance, user) {
+      $scope.user = user;
+      $scope.membership = {};
+
+      $scope.ok = function () {
+        $modalInstance.close('something');
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
       };
     }
   ];
 
   angular.module('gymApp').controller('AdminCtrl', AdminCtrl);
+  angular.module('gymApp').controller('ModalCtrl', ModalCtrl);
 
 })(window.angular);

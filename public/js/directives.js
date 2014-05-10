@@ -1,0 +1,24 @@
+(function (angular) {
+  "use strict";
+
+  angular.module('gymApp')
+    .directive('membershipList', function() {
+      return {
+          restrict: 'A',
+
+          scope: {
+            memberInfo: '=info'
+          },
+
+          link: function(scope, element, attrs) {
+            // cool way to get some data... ;)
+            // console.log(scope.memberInfo);
+
+            element.on('click', function() {
+              element.parent().find('ul').toggleClass('active');
+            });
+          }
+        }
+    });
+
+})(window.angular);
