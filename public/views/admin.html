@@ -74,7 +74,7 @@
   </div>
 
   <div class="row">
-    <form class="form-horizontal col-md-12 find-member">
+    <form class="form-horizontal col-md-12 find-member" ng-hide="showForms.editMember">
       <legend>Members</legend>
       <div class="form-group col-md-6">
           <label for="find_member" class="col-md-4 control-label">Find member</label>
@@ -117,7 +117,7 @@
               </ul>
             </td>
             <td style="text-align: center;">
-              <a href="#" ng-click="editMember(user)"><span class="glyphicon glyphicon-pencil"></span></a>
+              <a href="#" ng-click="showEditForm(user)"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
             <td style="text-align: center;">
               <a href="#" ng-click="deleteMember(user)"><span class="glyphicon glyphicon-remove"></span></a>

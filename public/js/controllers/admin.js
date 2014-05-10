@@ -35,14 +35,16 @@
           unique_id: $scope.newMember.uniqueId,
           email: $scope.newMember.email,
           phone: $scope.newMember.phone,
-          membership: {
-            year: $scope.newMember.year,
-            month: $scope.newMember.month,
-            status: {
-              full_month: $scope.newMember.fullMonth,
-              terms_remaining: $scope.newMember.terms
+          membership: [
+            {
+              year: $scope.newMember.year,
+              month: $scope.newMember.month,
+              status: {
+                full_month: $scope.newMember.fullMonth,
+                terms_remaining: $scope.newMember.terms
+              }
             }
-          }
+          ]
         };
 
         UserService.create(user)
