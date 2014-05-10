@@ -38,10 +38,8 @@
             {
               year: $scope.newMember.year,
               month: $scope.newMember.month,
-              status: {
-                full_month: $scope.newMember.fullMonth,
-                terms_remaining: $scope.newMember.terms
-              }
+              full_month: $scope.newMember.fullMonth,
+              terms_remaining: $scope.newMember.terms
             }
           ]
         };
@@ -90,6 +88,26 @@
           });
       };
 
+      $scope.addNewMembership = function(membership) {
+        membership.terms = membership.terms || 0;
+
+        var data = {
+          year: parseInt(membership.year),
+          month: membership.month,
+          full_month: membership.fullMonth,
+          terms_remaining: membership.terms
+        };
+
+        UserService.addMembership(AdminModel.editUserId, data)
+          .success(function(data, status) {
+            $scope.getUsers();
+            AlertService.show('info', 'Membership has been added!', 2500);
+          })
+          .error(function(data, status) {
+            console.log('something is seriously messed up');
+          });
+      };
+
       $scope.showEditForm = function(member) {
         $scope.showForms.editMember = true;
 
@@ -113,9 +131,8 @@
         $scope.showMembershipList[uniqueId] = !$scope.showMembershipList[uniqueId];
       };
 
-      $scope.addNewMembership = function(member) {
-        //$scope.showForms.editMembership = true;
-
+      $scope.showMembershipModal = function(member) {
+        // open modal instance
         var modalInstance = $modal.open({
           templateUrl: 'userMembershipModal',
           controller: ModalCtrl,
@@ -129,7 +146,7 @@
         });
 
         modalInstance.result.then(function (updatedMembership) {
-          console.log(updatedMembership);
+          $scope.addNewMembership(updatedMembership);
         }, function () {
           console.log('Modal dismissed at: ' + new Date());
         });
@@ -145,7 +162,8 @@
       $scope.membership = {};
 
       $scope.ok = function () {
-        $modalInstance.close('something');
+        AdminModel.editUserId = user.unique_id;
+        $modalInstance.close($scope.membership);
       };
 
       $scope.cancel = function () {

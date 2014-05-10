@@ -4,7 +4,9 @@
   var AdminModel = function() {
     return {
       months: ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December']
+        'July', 'August', 'September', 'October', 'November', 'December'],
+
+      editUserId: 0
     }
   };
 

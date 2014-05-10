@@ -43,7 +43,7 @@ module.exports = function(app) {
 
   app.put('/users/:unique_id', function(req, res) {
     var memberData = req.body;
-    console.log(memberData);
+
     User.update({ unique_id: req.params.unique_id }, memberData, function(err) {
       if(!err) {
         console.log('member is updated');
@@ -52,6 +52,24 @@ module.exports = function(app) {
         console.log(err);
       }
     });
+  });
+
+  app.post('/membership/:unique_id', function(req, res) {
+    var data = req.body;
+
+    User.collection.update(
+      { unique_id: req.params.unique_id },
+      { $push: { membership: data } },
+      function (err) {
+        if(!err) {
+          return res.send(true);
+        } else {
+          console.log(err);
+        }
+      }
+    );
+
+    // model.collection.update(finderObject, replaceWithObject)
   });
 
 

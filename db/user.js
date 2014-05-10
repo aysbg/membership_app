@@ -11,10 +11,8 @@ var userSchema = new Schema({
     {
       year: Number,
       month: String,
-      status: {
-        full_month: Boolean,
-        terms_remaining: Number,
-      }
+      full_month: Boolean,
+      terms_remaining: Number
     }
   ]
 });

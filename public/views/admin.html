@@ -115,7 +115,7 @@
                   <span ng-if="mm.status.full_month"> - Full month<span>
                   <span ng-if="!mm.status.full_month"> - {{ mm.status.terms }}</span>
                 </li>
-                <li><a href="#" ng-click="addNewMembership(user)">Add new</a></li>
+                <li><a href="#" ng-click="showMembershipModal(user)">Add new</a></li>
               </ul>
             </td>
             <td style="text-align: center;">
@@ -186,12 +186,14 @@
           <label for="membership" class="col-sm-3 control-label">Membership</label>
           <div class="col-sm-3">
             <input type="text" class="form-control" name="year" placeholder="Year"
-              ng-model="newMember.year">
+              ng-model="membership.year">
           </div>
           <div class="col-sm-3">
-            <select name="month" ng-model="newMember.month">
-              <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
-            </select>
+            <label class="custom-select">
+              <select name="month" ng-model="membership.month">
+                <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+              </select>
+            </label>
           </div>
         </div>
 
@@ -199,19 +201,13 @@
          <div class="col-sm-offset-3 col-sm-3">
             <div class="checkbox">
               <label>
-                <input name="fullMonth" ng-model="newMember.fullMonth" type="checkbox"> Full month
+                <input name="fullMonth" ng-model="membership.fullMonth" type="checkbox"> Full month
               </label>
             </div>
           </div>
           <div class="col-sm-3">
             <input type="text" class="form-control" name="terms" placeholder="Terms"
-              ng-if="!newMember.fullMonth" ng-model="newMember.terms" value="0">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-offset-3 col-sm-9">
-            <button type="submit" class="btn btn-primary" ng-disabled="newMemberForm.$invalid">Create</button>
+              ng-if="!membership.fullMonth" ng-model="membership.terms" value="0">
           </div>
         </div>
       </form>

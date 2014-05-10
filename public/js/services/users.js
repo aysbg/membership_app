@@ -13,12 +13,15 @@
         },
 
         update: function(uId, member) {
-          console.log(uId);
           return $http.put('/users/' + uId, member);
         },
 
         delete: function(uId) {
           return $http.delete('/users/' + uId);
+        },
+
+        addMembership: function(uId, data) {
+          return $http.post('/membership/' + uId, data);
         }
       };
     }
