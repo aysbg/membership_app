@@ -68,7 +68,8 @@
 
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-9">
-            <button type="submit" class="btn btn-primary" ng-disabled="newMemberForm.$invalid">Create</button>
+            <button type="submit" class="btn btn-primary"
+              ng-disabled="newMemberForm.$invalid">Create</button>
           </div>
         </div>
       </form>
@@ -112,8 +113,8 @@
               <ul class="membership-list">
                 <li ng-repeat="mm in user.membership">
                   {{ mm.year }}, {{ mm.month }}
-                  <span ng-if="mm.status.full_month"> - Full month<span>
-                  <span ng-if="!mm.status.full_month"> - {{ mm.status.terms }}</span>
+                  <span ng-show="mm.full_month"> - Full month</span>
+                  <span ng-hide="mm.full_month"> - {{ mm.terms_remaining }} terms left</span>
                 </li>
                 <li><a href="#" ng-click="showMembershipModal(user)">Add new</a></li>
               </ul>
@@ -175,45 +176,44 @@
   </div>
 </section>
 
+<script type="text/ng-template" id="userMembershipModal">
+  <div class="modal-header">
+      <h3 class="modal-title">Update {{ user.name }}'s membership</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="membership" class="col-sm-3 control-label">Membership</label>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="year" placeholder="Year"
+            ng-model="membership.year">
+        </div>
+        <div class="col-sm-3">
+          <label class="custom-select">
+            <select name="month" ng-model="membership.month">
+              <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+            </select>
+          </label>
+        </div>
+      </div>
 
- <script type="text/ng-template" id="userMembershipModal">
-    <div class="modal-header">
-        <h3 class="modal-title">Update {{ user.name }}'s membership</h3>
-    </div>
-    <div class="modal-body">
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label for="membership" class="col-sm-3 control-label">Membership</label>
-          <div class="col-sm-3">
-            <input type="text" class="form-control" name="year" placeholder="Year"
-              ng-model="membership.year">
-          </div>
-          <div class="col-sm-3">
-            <label class="custom-select">
-              <select name="month" ng-model="membership.month">
-                <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
-              </select>
+      <div class="form-group">
+       <div class="col-sm-offset-3 col-sm-3">
+          <div class="checkbox">
+            <label>
+              <input name="fullMonth" ng-model="membership.fullMonth" type="checkbox"> Full month
             </label>
           </div>
         </div>
-
-        <div class="form-group">
-         <div class="col-sm-offset-3 col-sm-3">
-            <div class="checkbox">
-              <label>
-                <input name="fullMonth" ng-model="membership.fullMonth" type="checkbox"> Full month
-              </label>
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <input type="text" class="form-control" name="terms" placeholder="Terms"
-              ng-if="!membership.fullMonth" ng-model="membership.terms" value="0">
-          </div>
+        <div class="col-sm-3">
+          <input type="text" class="form-control" name="terms" placeholder="Terms"
+            ng-if="!membership.fullMonth" ng-model="membership.terms" value="0">
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-    </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="ok()">OK</button>
+      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
 </script>

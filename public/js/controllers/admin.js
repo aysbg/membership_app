@@ -20,6 +20,7 @@
         UserService.get()
           .success(function(data) {
             $scope.users = data;
+            console.log(data);
           });
       };
 
@@ -90,6 +91,7 @@
 
       $scope.addNewMembership = function(membership) {
         membership.terms = membership.terms || 0;
+        membership.fullMonth = membership.fullMonth || false;
 
         var data = {
           year: parseInt(membership.year),

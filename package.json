@@ -1,7 +1,7 @@
 {
   "name": "gym-app",
   "description": "This app is for place that has members and subscirptions and memberships to look after...",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "start": "nodemon server.js"
@@ -13,13 +13,15 @@
     "moment": "2.5.*"
   },
   "devDependencies": {
-    "nodemon": "*",
+    "charlatan": "0.x",
     "gulp": "^3.6.1",
     "gulp-concat": "^2.2.0",
+    "gulp-sass": "0.7.x",
     "gulp-uglify": "^0.2.1",
     "gulp-util": "^2.2.14",
-    "gulp-sass": "0.7.x",
     "gulp-watch": "x",
-    "charlatan": "0.x"
+    "karma": "^0.12.16",
+    "karma-jasmine": "^0.1.5",
+    "nodemon": "*"
   }
 }
