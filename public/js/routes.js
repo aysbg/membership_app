@@ -1,7 +1,8 @@
 (function() {
   "use strict";
 
-  angular.module('gymApp', ['ngRoute', 'ui.bootstrap'])
+  // Load the app
+  angular.module('gymApp', [])
 
     .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 

@@ -20,13 +20,9 @@ module.exports = function(config) {
       'public/vendors/angular-mocks/angular-mocks.js',
 
       'public/js/app.js',
-      'public/js/services/admins.js',
-      'public/js/services/users.js',
-      'public/js/services/alerts.js',
-      'public/js/services/helpers.js',
-      'public/js/controllers/main.js',
-      'public/js/controllers/about.js',
-      'public/js/controllers/admin.js',
+      'public/js/models/*.js',
+      'public/js/services/*.js',
+      'public/js/controllers/*.js',
       'public/js/directives.js',
 
       'karma/**/*.spec.js'

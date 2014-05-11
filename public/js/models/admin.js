@@ -1,15 +1,15 @@
-(function (angular) {
+(function () {
   "use strict";
 
-  var AdminModel = function() {
-    return {
-      months: ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'],
+  angular.module('gymApp')
 
-      editUserId: 0
-    }
-  };
+    .factory('AdminModel', function() {
+      return {
+        months: ['January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December'],
 
-  angular.module('gymApp').factory('AdminModel', AdminModel);
+        editUserId: 0
+      }
+    });
 
-})(window.angular);
+})();

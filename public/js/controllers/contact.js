@@ -1,13 +1,11 @@
-(function(angular) {
+(function() {
   "use strict";
 
-  var ContactCtrl = ["$scope", "$http",
-    function($scope, $http) {
+  angular.module('gymApp.controllers', [])
 
-      $scope.tagline = 'Contact!';
+    .controller('ContactCtrl', ['$scope', function($scope) {
+        $scope.tagline = 'Contact!';
+      }
+    ]);
 
-    }];
-
-  angular.module('gymApp').controller('ContactCtrl', ContactCtrl);
-
-})(window.angular);
+})();

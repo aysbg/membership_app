@@ -1,7 +1,7 @@
-(function (angular) {
+(function () {
   "use strict";
 
-  angular.module('gymApp')
+  angular.module('gymApp.directives', [])
     .directive('membershipList', function() {
       return {
           restrict: 'A',
@@ -21,4 +21,4 @@
         }
     });
 
-})(window.angular);
+})();
