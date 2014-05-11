@@ -1,4 +1,4 @@
-module.exports = function(app) {
+module.exports = function (app) {
   // Models
   var Admin = require('../db/admin.js');
   var User = require('../db/user.js');
@@ -6,11 +6,10 @@ module.exports = function(app) {
   // User routes
   // -------------------------
   app.get('/users', function(req, res) {
-    User.find(function(err, users) {
-      if(!err) {
+    User.find().sort({ register_date: "asc" }).exec(function(err, users) {
+      if (!err) {
         res.json(users);
-      }
-      else {
+      } else {
         res.send(err);
       }
     });
