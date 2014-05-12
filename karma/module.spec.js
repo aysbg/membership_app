@@ -1,14 +1,11 @@
-(function () {
-  'use strict';
-
-  describe('module exists', function() {
-    var module;
-    beforeEach(function() {
-      module = angular.module("gymApp");
-    });
-
-    it("should be registered", function() {
-      expect(module).not.toBe(undefined);
-    });
+'use strict';
+describe('Module', function() {
+  var module;
+  module = {};
+  beforeEach(function() {
+    return module = angular.module('gymApp');
   });
-})();
+  return it('should be registered', function() {
+    return expect(module).not.toBe(void 0);
+  });
+});

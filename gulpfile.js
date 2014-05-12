@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     gulpUtil = require('gulp-util'),
     sass = require('gulp-sass'),
+    coffee = require('gulp-coffee'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     watch = require('gulp-watch');
@@ -22,6 +23,12 @@ gulp.task('styles', function() {
             .pipe(sass({ style: 'compressed' }))
             .pipe(concat('style.css'))
             .pipe(gulp.dest('public/css'));
+});
+
+gulp.task('karma-coffee', function() {
+  gulp.src('karma/coffee/*.spec.coffee')
+      .pipe(coffee({ bare: true }).on('error', gulpUtil.log))
+      .pipe(gulp.dest('karma'));
 });
 
 // Rerun the task when a file changes
