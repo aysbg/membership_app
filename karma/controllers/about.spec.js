@@ -6,6 +6,7 @@
         aboutCtrl;
 
     beforeEach(module('gymApp'));
+    beforeEach(module('gymApp.controllers'));
 
     beforeEach(inject(function($rootScope, $controller) {
       scope = $rootScope.$new();

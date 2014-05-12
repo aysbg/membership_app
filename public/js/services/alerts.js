@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  angular.module('gymApp').factory('AlertService', ['$rootScope', '$timeout',
+  var AlertService = ['$rootScope', '$timeout',
     function($rootScope, $timeout) {
       // create an array of alerts available globally
       $rootScope.alerts = [];
@@ -38,6 +38,8 @@
 
       return alertService;
     }
-  ]);
+  ];
+
+  angular.module('AlertService', []).factory('AlertService', AlertService);
 
 })();

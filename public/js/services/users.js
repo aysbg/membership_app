@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  angular.module('gymApp').factory('UserService', ['$http',
+  var UserService = ['$http',
     function($http) {
       return {
         get: function() {
@@ -25,6 +25,8 @@
         }
       };
     }
-  ]);
+  ];
+
+  angular.module('UserService', []).factory('UserService', UserService);
 
 })();

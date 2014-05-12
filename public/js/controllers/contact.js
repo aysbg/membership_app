@@ -1,11 +1,12 @@
 (function() {
   "use strict";
 
-  angular.module('gymApp.controllers', [])
+  var ContactCtrl = ['$scope',
+    function($scope) {
+      $scope.tagline = 'Contact!';
+    }
+  ];
 
-    .controller('ContactCtrl', ['$scope', function($scope) {
-        $scope.tagline = 'Contact!';
-      }
-    ]);
+  angular.module('ContactCtrl', []).controller('ContactCtrl', ContactCtrl);
 
 })();

@@ -1,13 +1,14 @@
 (function () {
   "use strict";
 
-  angular.module('gymApp').service('Helpers', [
+  var Helpers = [
     function() {
-
       this.helloThere = function() {
         return console.log('hello there from the helper service');
       };
     }
-  ]);
+  ];
+
+  angular.module('HelperService', []).service('Helpers', Helpers);
 
 })();

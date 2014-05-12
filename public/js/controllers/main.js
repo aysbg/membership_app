@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  angular.module('gymApp')
+  angular.module('MainCtrl', [])
     .controller('MainCtrl',
       ["$location", "$rootScope", "$scope", "$http", "AdminService", 'AlertService',
       function($location, $rootScope, $scope, $http, AdminService, AlertService) {

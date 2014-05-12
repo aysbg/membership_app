@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  angular.module('gymApp')
+  angular.module('AdminCtrl', [])
     .controller('AdminCtrl',
       ["$timeout", "$modal", "$rootScope", "$scope", "$http", "AdminService", "AdminModel", "UserService", "AlertService", 'Helpers',
       function($timeout, $modal, $rootScope, $scope, $http, AdminService, AdminModel, UserService, AlertService, Helpers) {
@@ -22,7 +22,6 @@
           UserService.get()
             .success(function(data) {
               $scope.users = data;
-              console.log(data);
             });
         };
 

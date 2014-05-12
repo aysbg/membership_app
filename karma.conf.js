@@ -18,12 +18,12 @@ module.exports = function(config) {
       'public/vendors/angular/angular.min.js',
       'public/vendors/angular-route/angular-route.min.js',
       'public/vendors/angular-mocks/angular-mocks.js',
+      'public/vendors/angular-bootstrap/ui-bootstrap.min.js',
 
-      'public/js/app.js',
       'public/js/models/*.js',
       'public/js/services/*.js',
       'public/js/controllers/*.js',
-      'public/js/directives.js',
+      'public/js/app.js',
 
       'karma/**/*.spec.js'
     ],

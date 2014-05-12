@@ -1,8 +1,8 @@
 (function() {
   "use strict";
 
-  angular.module('gymApp')
-    .factory('AdminService', ['$http', function($http) {
+  var AdminService = ['$http',
+    function($http) {
       var adminIsAuth = false;
 
       return {
@@ -33,6 +33,8 @@
         }
       };
     }
-  ]);
+  ];
+
+  angular.module('AdminService', []).factory('AdminService', AdminService);
 
 })();
