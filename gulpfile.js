@@ -29,6 +29,14 @@ gulp.task('karma-coffee', function() {
   gulp.src('karma/coffee/*.spec.coffee')
       .pipe(coffee({ bare: true }).on('error', gulpUtil.log))
       .pipe(gulp.dest('karma'));
+
+  gulp.src('karma/coffee/controllers/*.spec.coffee')
+      .pipe(coffee({ bare: true }).on('error', gulpUtil.log))
+      .pipe(gulp.dest('karma/controllers'));
+
+  gulp.src('karma/coffee/services/*.spec.coffee')
+      .pipe(coffee({ bare: true }).on('error', gulpUtil.log))
+      .pipe(gulp.dest('karma/services'));
 });
 
 // Rerun the task when a file changes

@@ -1,21 +1,18 @@
-(function () {
-  "use strict";
-
-  describe('AboutCtrl', function() {
-    var scope,
-        aboutCtrl;
-
-    beforeEach(module('gymApp'));
-    beforeEach(module('gymApp.controllers'));
-
-    beforeEach(inject(function($rootScope, $controller) {
-      scope = $rootScope.$new();
-
-      aboutCtrl = $controller('AboutCtrl', { $scope: scope });
-    }));
-
-    it("shoud have variable tagline", function() {
-      expect(scope.tagline).toBe('About!');
-    });
+"use strict";
+describe("About controller", function() {
+  var aboutCtrl, scope;
+  scope = {};
+  aboutCtrl = {};
+  beforeEach(function() {
+    return module('gymApp');
   });
-})();
+  beforeEach(inject(function($rootScope, $controller) {
+    scope = $rootScope.$new();
+    aboutCtrl = $controller("AboutCtrl", {
+      $scope: scope
+    });
+  }));
+  return it("should have variable tagline", function() {
+    return expect(scope.tagline).toBe('About!');
+  });
+});

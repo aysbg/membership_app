@@ -53,18 +53,18 @@
 
     }])
 
-    // .run(['$rootScope', 'AdminService', '$location',
-    //   function($rootScope, AdminService, $location) {
-    //     // Everytime the route in our app changes check auth status
-    //     $rootScope.$on("$routeChangeStart", function(event, next, current) {
-    //       // if you're logged out send to login page.
-    //       if (next.requireLogin && !AdminService.getAuthStatus()) {
-    //         // [ToDo] uncomment these two lines after you are done working on admin page
-    //         // $location.path('/');
-    //         // event.preventDefault();
-    //       }
-    //     });
-    //   }
-    // ]);
+    .run(['$rootScope', 'AdminService', '$location',
+       function($rootScope, AdminService, $location) {
+         // Everytime the route in our app changes check auth status
+         $rootScope.$on("$routeChangeStart", function(event, next, current) {
+           // if you're logged out send to login page.
+           if (next.requireLogin && !AdminService.getAuthStatus()) {
+             // [ToDo] uncomment these two lines after you are done working on admin page
+             // $location.path('/');
+             // event.preventDefault();
+           }
+         });
+       }
+    ]);
 
 })();
