@@ -12,7 +12,6 @@ describe "About controller", () ->
     aboutCtrl = $controller("AboutCtrl",
       $scope: scope
     )
-    return
   )
 
   it "should have variable tagline", () ->

@@ -1,24 +1,22 @@
-(function () {
-  "use strict";
+'use strict';
 
-  angular.module('gymApp.directives', [])
-    .directive('membershipList', function() {
-      return {
-          restrict: 'A',
+angular.module('gymApp')
 
-          scope: {
-            memberInfo: '=info'
-          },
+  .directive('membershipList', function() {
+    return {
+        restrict: 'A',
 
-          link: function(scope, element, attrs) {
-            // cool way to get some data... ;)
-            // console.log(scope.memberInfo);
+        scope: {
+          memberInfo: '=info'
+        },
 
-            element.on('click', function() {
-              element.parent().find('ul').toggleClass('active');
-            });
-          }
+        link: function(scope, element, attrs) {
+          // cool way to get some data... ;)
+          // console.log(scope.memberInfo);
+
+          element.on('click', function() {
+            element.parent().find('ul').toggleClass('active');
+          });
         }
-    });
-
-})();
+      }
+  });

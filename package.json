@@ -1,5 +1,5 @@
 {
-  "name": "gymАpp",
+  "name": "gym_app",
   "description": "This app is for place that has members and subscirptions and memberships to look after...",
   "version": "0.0.2",
   "private": true,
@@ -23,6 +23,7 @@
     "gulp-watch": "x",
     "karma": "^0.12.16",
     "karma-jasmine": "^0.1.5",
+    "karma-chrome-launcher": "*",
     "nodemon": "*"
   }
 }

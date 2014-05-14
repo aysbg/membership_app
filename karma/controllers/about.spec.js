@@ -8,7 +8,7 @@ describe("About controller", function() {
   });
   beforeEach(inject(function($rootScope, $controller) {
     scope = $rootScope.$new();
-    aboutCtrl = $controller("AboutCtrl", {
+    return aboutCtrl = $controller("AboutCtrl", {
       $scope: scope
     });
   }));
