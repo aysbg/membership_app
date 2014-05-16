@@ -173,7 +173,7 @@
     }
   ];
 
-  angular.module('gymApp').controller('AdminCtrl', AdminCtrl);
-  angular.module('gymApp').controller('ModalCtrl', ModalCtrl);
+  angular.module('gymApp.controllers').controller('AdminCtrl', AdminCtrl);
+  angular.module('gymApp.controllers').controller('ModalCtrl', ModalCtrl);
 
 })();

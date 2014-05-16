@@ -1,4 +1,4 @@
-
+(function() {
   "use strict";
 
   var Helpers = [
@@ -9,5 +9,6 @@
     }
   ];
 
-  angular.module('gymApp').service('Helpers', Helpers);
+  angular.module('gymApp.services').service('Helpers', Helpers);
+})();
 

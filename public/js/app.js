@@ -1,56 +1,70 @@
-"use strict";
+(function() {
+  "use strict";
 
-var gymApp = angular.module('gymApp', ['ngRoute', 'ui.bootstrap']);
+  angular.module('gymApp.services',[]);
+  angular.module('gymApp.controllers',[]);
+  angular.module('gymApp.models',[]);
+  angular.module('gymApp.directives',[]);
 
-gymApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  var gymApp = angular.module('gymApp', [
+    'ngRoute', 
+    'ui.bootstrap', 
+    'gymApp.services',
+    'gymApp.controllers',
+    'gymApp.models',
+    'gymApp.directives'
+  ]);
 
-    $routeProvider
+  gymApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
-      // home page
-      .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'MainCtrl',
-        requireLogin: false
-      })
+      $routeProvider
 
-      .when('/admin', {
-        templateUrl: 'views/admin.html',
-        controller: 'AdminCtrl',
-        requireLogin: true
-      })
+        // home page
+        .when('/', {
+          templateUrl: 'views/home.html',
+          controller: 'MainCtrl',
+          requireLogin: false
+        })
 
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        requireLogin: false
-      })
+        .when('/admin', {
+          templateUrl: 'views/admin.html',
+          controller: 'AdminCtrl',
+          requireLogin: true
+        })
 
-      //
-      .when('/contact', {
-        templateUrl: 'views/contact.html',
-        controller: 'ContactCtrl',
-        requireLogin: false
-      })
+        .when('/about', {
+          templateUrl: 'views/about.html',
+          controller: 'AboutCtrl',
+          requireLogin: false
+        })
 
-      .otherwise({
-        redirectTo: '/'
-      });
+        //
+        .when('/contact', {
+          templateUrl: 'views/contact.html',
+          controller: 'ContactCtrl',
+          requireLogin: false
+        })
 
-    $locationProvider.html5Mode(true);
+        .otherwise({
+          redirectTo: '/'
+        });
 
-  }]);
+      $locationProvider.html5Mode(true);
 
-// gymApp.run(['$rootScope', 'AdminService', '$location',
-//      function($rootScope, AdminService, $location) {
-//        // Everytime the route in our app changes check auth status
-//        $rootScope.$on("$routeChangeStart", function(event, next, current) {
-//          // if you're logged out send to login page.
-//          if (next.requireLogin && !AdminService.getAuthStatus()) {
-//            // [ToDo] uncomment these two lines after you are done working on admin page
-//            // $location.path('/');
-//            // event.preventDefault();
-//          }
-//        });
-//      }
-//   ]);
+    }])
+  
+    .run(['$rootScope', 'AdminService', '$location',
+       function($rootScope, AdminService, $location) {
+          // Everytime the route in our app changes check auth status
+          $rootScope.$on("$routeChangeStart", function(event, next, current) {
+            // if you're logged out send to login page.
+            if (next.requireLogin && !AdminService.getAuthStatus()) {
+              // [ToDo] uncomment these two lines after you are done working on admin page
+              // $location.path('/');
+              // event.preventDefault();
+            }
+          });
+        }
+     ]);
+})();
 

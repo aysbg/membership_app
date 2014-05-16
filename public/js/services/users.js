@@ -1,4 +1,4 @@
-
+(function() {
   "use strict";
 
   var UserService = ['$http',
@@ -27,6 +27,6 @@
     }
   ];
 
-  angular.module('gymApp').factory('UserService', UserService);
-
+  angular.module('gymApp.services').factory('UserService', UserService);
+})();
 
