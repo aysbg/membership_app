@@ -30,6 +30,14 @@
     .membership-list .terms-count a {
       font-size: 15px; }
 
+.alerts-container {
+  position: fixed;
+  width: 80%;
+  top: 15px;
+  left: 50%;
+  margin-left: -40%;
+  z-index: 999; }
+
 label.custom-select {
   display: inline-block;
   position: relative;

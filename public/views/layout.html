@@ -52,7 +52,7 @@
 
   <!-- ANGULAR DYNAMIC CONTENT -->
   <div id="content">
-    <div class="container">
+    <div class="alerts-container">
       <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alert.close()">{{ alert.msg }}</alert>
     </div>
 
