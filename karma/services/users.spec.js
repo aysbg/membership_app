@@ -18,11 +18,23 @@ describe("Services: Users", function() {
     afterEach(function() {
       return httpBackend.flush();
     });
-    return it("can get list of users", function() {
+    it("can get list of users", function() {
       var users;
       httpBackend.expectGET('/users').respond(200, '');
       users = userService.get();
       return expect(users).not.toBe(void 0);
+    });
+    return it("can create new user", function() {
+      var user;
+      user = {
+        name: 'Test User',
+        unique_id: 1234567,
+        phone: String,
+        register_date: '20140520',
+        membership: []
+      };
+      httpBackend.expectPOST('/users', user).respond(201, '');
+      return userService.create(user);
     });
   });
 });

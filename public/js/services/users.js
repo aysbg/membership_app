@@ -22,6 +22,10 @@
 
         addMembership: function(uId, data) {
           return $http.post('/membership/' + uId, data);
+        },
+
+        updateTermsCount: function(uId, terms) {
+          return $http.post('/terms/' + uId, terms);
         }
       };
     }

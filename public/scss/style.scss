@@ -28,6 +28,7 @@
   transition: max-height .3s linear;
 
   li {
+    position: relative;
     padding: 3px 0;
     border-top: 1px solid #e0e0e0;
 
@@ -38,6 +39,17 @@
 
   &.active {
     max-height: 200px;
+  }
+
+  .terms-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 13px;
+
+    a {
+      font-size: 15px;
+    }
   }
 }
 

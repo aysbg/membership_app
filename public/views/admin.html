@@ -6,7 +6,7 @@
         <div class="form-group">
           <label for="name" class="col-sm-3 control-label">Name</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" name="name" placeholder="Enter name"
+            <input type="text" class="form-control" id="name" placeholder="Enter name"
               ng-model="newMember.name" required>
             <p ng-show="newMemberForm.name.$error.minlength" class="help-block">Name is required</p>
           </div>
@@ -15,7 +15,7 @@
         <div class="form-group">
           <label for="uniqueId" class="col-sm-3 control-label">Unique ID</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" name="uniqueId" placeholder="Enter Unique ID"
+            <input type="text" class="form-control" id="uniqueId" placeholder="Enter Unique ID"
               ng-model="newMember.uniqueId" required>
           </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="form-group">
           <label for="email" class="col-sm-3 control-label">Email</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" name="email" placeholder="Enter email"
+            <input type="text" class="form-control" id="email" placeholder="Enter email"
               ng-model="newMember.email" required>
             <p ng-show="newMemberForm.email.$error.email" class="help-block">Email is required</p>
           </div>
@@ -32,15 +32,15 @@
         <div class="form-group">
           <label for="phone" class="col-sm-3 control-label">Phone</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" name="phone" placeholder="Enter phone"
+            <input type="text" class="form-control" id="phone" placeholder="Enter phone"
               ng-model="newMember.phone" required>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="membership" class="col-sm-3 control-label">Membership</label>
+          <label for="year" class="col-sm-3 control-label">Membership</label>
           <div class="col-sm-3">
-            <input type="text" class="form-control" name="year" placeholder="Year"
+            <input type="text" class="form-control" id="year" placeholder="Year"
               ng-model="newMember.year">
           </div>
           <div class="col-sm-3">
@@ -82,7 +82,7 @@
       <div class="form-group col-md-6">
           <label for="find_member" class="col-md-4 control-label">Find member</label>
           <div class="col-md-8">
-            <input type="text" class="form-control" name="find_member" placeholder="Enter Member name"
+            <input type="text" class="form-control" id="find_member" placeholder="Enter Member name"
               ng-model="find_member" required>
           </div>
         </div>
@@ -115,6 +115,13 @@
                   {{ mm.year }}, {{ mm.month }}
                   <span ng-show="mm.full_month"> - Full month</span>
                   <span ng-hide="mm.full_month"> - {{ mm.terms_remaining }} terms left</span>
+                  <div class="terms-count" ng-hide="mm.full_month">
+                    <a href="#"
+                       ng-click="add_term(user.unique_id, mm.terms_remaining)">+</a>
+                    <span>/</span>
+                    <a href="#"
+                       ng-click="reduce_term(user.unique_id, mm.terms_remaining)">-</a>
+                  </div>
                 </li>
                 <li><a href="#" ng-click="showMembershipModal(user)">Add new</a></li>
               </ul>
@@ -183,7 +190,7 @@
   <div class="modal-body">
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="membership" class="col-sm-3 control-label">Membership</label>
+        <label for="year" class="col-sm-3 control-label">Membership</label>
         <div class="col-sm-3">
           <input type="text" class="form-control" name="year" placeholder="Year"
             ng-model="membership.year">

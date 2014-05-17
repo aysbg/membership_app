@@ -152,6 +152,42 @@
           console.log('Modal dismissed at: ' + new Date());
         });
       };
+
+      $scope.add_term = function(uId, currentTerms) {
+        currentTerms++;
+
+        var newTerms = {
+          terms_remaining: currentTerms
+        };
+
+        UserService
+            .updateTermsCount(uId, newTerms)
+            .success(function(data, status) {
+              $scope.getUsers();
+              AlertService.show('info', 'Terms have been added!', 2500);
+            })
+            .error(function(data, status) {
+              console.log('something is seriously messed up');
+            });
+      };
+
+      $scope.reduce_term = function(uId, currentTerms) {
+        currentTerms--;
+
+        var newTerms = {
+          terms_remaining: currentTerms
+        };
+
+        UserService
+            .updateTermsCount(uId, newTerms)
+            .success(function(data, status) {
+              $scope.getUsers();
+              AlertService.show('info', 'Terms have been reduced!', 2500);
+            })
+            .error(function(data, status) {
+              console.log('something is seriously messed up');
+            });
+      };
     }
   ];
 

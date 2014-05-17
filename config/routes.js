@@ -71,6 +71,21 @@ module.exports = function (app) {
     // model.collection.update(finderObject, replaceWithObject)
   });
 
+  app.post('/terms/:unique_id', function(req, res) {
+    var terms_remaining = req.body.terms_remaining;
+
+    User.findOne({ unique_id: req.params.unique_id }, function(err, doc) {
+      if(!err) {
+        var docLen = doc.membership.length;
+        doc.membership[docLen - 1].terms_remaining = terms_remaining;
+        doc.save();
+        return res.send(true);
+      } else {
+        console.log(err);
+      }
+    });
+  });
+
 
   // Admin routes
   // -------------------------
