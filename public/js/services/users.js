@@ -16,7 +16,7 @@
           return $http.put('/users/' + uId, member);
         },
 
-        delete: function(uId) {
+        remove: function(uId) {
           return $http.delete('/users/' + uId);
         },
 

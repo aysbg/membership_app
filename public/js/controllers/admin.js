@@ -78,7 +78,7 @@
       };
 
       $scope.deleteMember = function(member) {
-        UserService.delete(member.unique_id)
+        UserService.remove(member.unique_id)
           .success(function(data, status) {
             $scope.getUsers();
             AlertService.show('info', 'Member has been deleted!', 2500);
