@@ -14,3 +14,7 @@ user membership app built with nodejs, angularjs and mongodb with karma for test
 * Browse to `localhost:8080`
 
 :)
+
+### First run
+When you start the application for the first time, you will be asked by the system to create an Admin account.
+After that has been done - you can start using the app as you please. :)
