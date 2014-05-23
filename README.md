@@ -18,3 +18,7 @@ user membership app built with nodejs, angularjs and mongodb with karma for test
 ### First run
 When you start the application for the first time, you will be asked by the system to create an Admin account.
 After that has been done - you can start using the app as you please. :)
+
+### Code
+Code has been linted with custom JSHint config which you can see in the repo.
+For more information on the various options selected, please visit [JSHint docs](http://www.jshint.com/docs/options/)
