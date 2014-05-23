@@ -1,4 +1,6 @@
 module.exports = function (app) {
+  'use strict';
+
   // Models
   var Admin = require('../db/admin.js');
   var User = require('../db/user.js');
@@ -6,7 +8,7 @@ module.exports = function (app) {
   // User routes
   // -------------------------
   app.get('/users', function(req, res) {
-    User.find().sort({ register_date: "asc" }).exec(function(err, users) {
+    User.find().sort({ register_date: 'asc' }).exec(function(err, users) {
       if (!err) {
         res.json(users);
       } else {
@@ -20,7 +22,7 @@ module.exports = function (app) {
 
     user.save(function(err) {
       if (!err) {
-        return console.log("member created");
+        return console.log('member created');
       } else {
         return console.log(err);
       }
@@ -91,8 +93,9 @@ module.exports = function (app) {
   // -------------------------
   app.get('/admins', function(req, res) {
     Admin.find(function(err, adm) {
-      if (err)
+      if (err) {
         res.send(err);
+      }
 
       // return all in JSON format
       res.json(adm);
@@ -104,7 +107,7 @@ module.exports = function (app) {
 
     admin.save(function (err) {
       if (!err) {
-        return console.log("admin created");
+        return console.log('admin created');
       } else {
         return console.log(err);
       }
@@ -119,10 +122,11 @@ module.exports = function (app) {
 
     Admin.find({ email: email, password: pass } ,function(err, docs) {
       if (!err) {
-        if(docs.length > 0)
+        if(docs.length > 0) {
           res.send('true');
-        else
+        } else {
           res.send('false');
+        }
       }
       else {
         res.send(err);

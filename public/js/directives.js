@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular.module('gymApp.directives')
@@ -21,5 +21,5 @@
           }
         };
     });
-})();
+})(window.angular);
 

@@ -1,7 +1,7 @@
-(function() {
+(function(angular) {
   'use strict';
 
-  var MainCtrl = ["$location", "$rootScope", "$scope", "$http", "AdminService", 'AlertService',
+  var MainCtrl = ['$location', '$rootScope', '$scope', '$http', 'AdminService', 'AlertService',
     function($location, $rootScope, $scope, $http, AdminService, AlertService) {
       $scope.showAdminCreateForm = false;
       $scope.showLoginForm = true;
@@ -31,13 +31,13 @@
         };
 
         AdminService.create(newAdmin)
-          .success(function(data, status) {
+          .success(function() {
             // hide the new admin form
             $scope.showAdminCreateForm = false;
             // shown login form
             $scope.showLoginForm = true;
-          }).error(function(data, status) {
-            console.log('there has been an error saving admin!');
+          }).error(function(status) {
+            console.log('there has been an error saving admin! ' + status);
           });
       };
 
@@ -47,16 +47,16 @@
               pass = $scope.adminLogin.password;
 
           AdminService.isAdmin(email, pass)
-            .success(function(data, status) {
-              if( data == 'true' ) {
+            .success(function(data) {
+              if( data === 'true' ) {
                 AdminService.setAuthStatus(true);
                 $location.path('/admin');
               }
               else {
                 AlertService.show('danger', 'Email or password are not correct!');
               }
-            }).error(function(data, status) {
-              console.log('there is an error');
+            }).error(function(status) {
+              console.log('there is an error' + status);
             });
         }
       };
@@ -65,5 +65,5 @@
   ];
 
   angular.module('gymApp.controllers').controller('MainCtrl', MainCtrl);
-})();
+})(window.angular);
 

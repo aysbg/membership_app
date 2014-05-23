@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   var AdminService = ['$http',
@@ -13,11 +13,6 @@
         // call to POST and create a new member
         create: function(newAdmin) {
           return $http.post('/admins', newAdmin);
-        },
-
-        // call to DELETE a member
-        delete: function(id) {
-          // return $http.delete('/api/nerds/' + id);
         },
 
         isAdmin: function(email, pass) {
@@ -36,5 +31,5 @@
   ];
 
   angular.module('gymApp.services').factory('AdminService', AdminService);
-})();
+})(window.angular);
 

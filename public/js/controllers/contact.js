@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   var ContactCtrl = ['$scope',
@@ -8,5 +8,5 @@
   ];
 
   angular.module('gymApp.controllers').controller('ContactCtrl', ContactCtrl);
-})();
+})(window.angular);
 

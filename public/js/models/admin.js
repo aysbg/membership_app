@@ -1,5 +1,5 @@
-(function() {
-  "use strict";
+(function(angular) {
+  'use strict';
 
   var Adminmodel = [
     function() {
@@ -13,5 +13,5 @@
   ];
 
   angular.module('gymApp.models').factory('AdminModel', Adminmodel);
-})();
+})(window.angular);
 

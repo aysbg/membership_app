@@ -1,8 +1,8 @@
-(function () {
-  "use strict";
+(function (angular) {
+  'use strict';
 
-  var AdminCtrl = ["$timeout", "$modal", "$rootScope", "$scope", "$http", "AdminService", "AdminModel", "UserService", "AlertService", 'Helpers',
-    function($timeout, $modal, $rootScope, $scope, $http, AdminService, AdminModel, UserService, AlertService, Helpers) {
+  var AdminCtrl = ['$timeout', '$modal', '$rootScope', '$scope', '$http', 'AdminService', 'AdminModel', 'UserService', 'AlertService',
+    function($timeout, $modal, $rootScope, $scope, $http, AdminService, AdminModel, UserService, AlertService) {
       $scope.newMember = {};
       $scope.users = {};
       $scope.months = AdminModel.months;
@@ -24,8 +24,9 @@
       };
 
       $scope.createNewMember = function() {
-        if(!$scope.newMemberForm.$valid)
+        if(!$scope.newMemberForm.$valid) {
           return;
+        }
 
         $scope.newMember.terms = $scope.newMember.terms || 0;
 
@@ -45,13 +46,13 @@
         };
 
         UserService.create(user)
-          .success(function(data, status) {
+          .success(function() {
             $scope.newMember = {};
             $scope.getUsers();
             AlertService.show('success', 'New member has been created!', 2500);
           })
-          .error(function(data, status) {
-            console.log(data);
+          .error(function(status) {
+            console.log(status);
           });
       };
 
@@ -64,7 +65,7 @@
         };
 
         UserService.update(user.unique_id, user)
-          .success(function(data, status) {
+          .success(function() {
             $scope.getUsers();
             AlertService.show('info', 'Member has been updated!', 2500);
 
@@ -72,19 +73,19 @@
               $scope.showForms.editMember = false;
             }, 2500);
           })
-          .error(function(data, status) {
-            console.log('something went wrong with the update process');
+          .error(function(status) {
+            console.log('something went wrong with the update process' + status);
           });
       };
 
       $scope.deleteMember = function(member) {
         UserService.remove(member.unique_id)
-          .success(function(data, status) {
+          .success(function() {
             $scope.getUsers();
             AlertService.show('info', 'Member has been deleted!', 2500);
           })
-          .error(function(data, status) {
-            console.log('something is seriously messed up');
+          .error(function(status) {
+            console.log('something is seriously messed up' + status);
           });
       };
 
@@ -100,12 +101,12 @@
         };
 
         UserService.addMembership(AdminModel.editUserId, data)
-          .success(function(data, status) {
+          .success(function() {
             $scope.getUsers();
             AlertService.show('info', 'Membership has been added!', 2500);
           })
-          .error(function(data, status) {
-            console.log('something is seriously messed up');
+          .error(function(status) {
+            console.log('something is seriously messed up' + status);
           });
       };
 
@@ -162,12 +163,12 @@
 
         UserService
             .updateTermsCount(uId, newTerms)
-            .success(function(data, status) {
+            .success(function() {
               $scope.getUsers();
               AlertService.show('info', 'Terms have been added!', 2500);
             })
-            .error(function(data, status) {
-              console.log('something is seriously messed up');
+            .error(function(status) {
+              console.log('something is seriously messed up' + status);
             });
       };
 
@@ -180,12 +181,12 @@
 
         UserService
             .updateTermsCount(uId, newTerms)
-            .success(function(data, status) {
+            .success(function() {
               $scope.getUsers();
               AlertService.show('info', 'Terms have been reduced!', 2500);
             })
-            .error(function(data, status) {
-              console.log('something is seriously messed up');
+            .error(function(status) {
+              console.log('something is seriously messed up' + status);
             });
       };
     }
@@ -212,4 +213,4 @@
   angular.module('gymApp.controllers').controller('AdminCtrl', AdminCtrl);
   angular.module('gymApp.controllers').controller('ModalCtrl', ModalCtrl);
 
-})();
+})(window.angular);

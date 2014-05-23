@@ -1,5 +1,5 @@
-(function() {
-  "use strict";
+(function(angular) {
+  'use strict';
 
   var Helpers = [
     function() {
@@ -10,5 +10,5 @@
   ];
 
   angular.module('gymApp.services').service('Helpers', Helpers);
-})();
+})(window.angular);
 

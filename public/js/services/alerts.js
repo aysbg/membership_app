@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   var AlertService = ['$rootScope', '$timeout',
@@ -41,5 +41,5 @@
   ];
 
   angular.module('gymApp.services').factory('AlertService', AlertService);
-})();
+})(window.angular);
 
